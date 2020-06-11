@@ -23,8 +23,28 @@ def openFile():
         f.close()
 
 def saveFile():
-    pass
+    global file
+    if file == None:
+        file = asksaveasfilename(initialfile = "Untitled.txt", filetypes = [("All Files", "*.*"), ("Text Douments", "*.txt")])
+        
+        if file == "":
+            file = None
 
+        else:
+            # Save as a new file
+            f = open(file, "w")
+            f.write(TextArea.get(1.0, END))
+            f.close()
+
+            root.title(os.path.basename(file) + " - Notepad")
+            print("File Saved")
+
+    else:
+            # Save the file
+            f = open(file, "w")
+            f.write(TextArea.get(1.0, END))
+            f.close()
+ 
 def quitApp():
     root.destroy()
 
