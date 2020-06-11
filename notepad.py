@@ -14,13 +14,13 @@ def quitApp():
     pass
 
 def cut():
-    pass
+    TextArea.event_generate(("<<Cut>>"))
 
 def copy():
-    pass 
+    TextArea.event_generate(("<<Copy>>"))
 
 def paste():
-    pass
+    TextArea.event_generate(("<<Paste>>"))
 
 def about():
     pass
