@@ -17,7 +17,7 @@ def cut():
     pass
 
 def copy():
-    pass
+    pass 
 
 def paste():
     pass
@@ -37,6 +37,7 @@ if __name__ == "__main__":
 
     TextArea = Text (root, font="Times 13")
     file = None
+    TextArea.pack(expand = True, fill = BOTH)
 
     # Lets create a menu bar
     MenuBar = Menu(root)
@@ -67,7 +68,7 @@ if __name__ == "__main__":
     EditMenu.add_command(label = "Copy", command = copy)
     EditMenu.add_command(label = "Paste", command = paste)
 
-    EditMenu.add_cascade(label = "Edit", menu = EditMenu)
+    MenuBar.add_cascade(label = "Edit", menu = EditMenu)
     
     # Edit menu ends
 
@@ -79,5 +80,11 @@ if __name__ == "__main__":
     # Help menu ends 
 
     root.config(menu = MenuBar)
+
+    # Adding a scroll bar
+    ScrollBar = Scrollbar(TextArea)
+    ScrollBar.pack(side = RIGHT, fill = Y)
+    ScrollBar.config(command = TextArea.yview)
+    TextArea.config(yscrollcommand = ScrollBar.set)
 
     root.mainloop()
