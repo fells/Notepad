@@ -1,17 +1,32 @@
 from tkinter import *
+from tkinter.messagebox import showinfo
+from tkinter.filedialog import askopenfilename, asksaveasfilename
+import os
 
 
 def newFile():
-    pass
+    global file
+    root.title("Untitled - Notepad")
+    file = None
+    TextArea.delete(1.0, END)
 
 def openFile():
-    pass
+    global file
+    file = askopenfilename(defaultextension = ".txt", filetypes = [("All Files", "*.*"), ("Text Douments", "*.txt")])
+    if file == "":
+        file = None
+    else:
+        root.title(os.path.basename(file) + " - Notepad")
+        TextArea.delete(1.0, END)
+        f = open(file, "r")
+        TextArea.insert(1.0, f.read())
+        f.close()
 
 def saveFile():
     pass
 
 def quitApp():
-    pass
+    root.destroy()
 
 def cut():
     TextArea.event_generate(("<<Cut>>"))
@@ -23,7 +38,7 @@ def paste():
     TextArea.event_generate(("<<Paste>>"))
 
 def about():
-    pass
+    showinfo("Notepad", "Notepad created by Michel Calil")
 
 
 
